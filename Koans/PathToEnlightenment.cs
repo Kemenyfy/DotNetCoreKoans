@@ -18,9 +18,9 @@ namespace DotNetCoreKoans.Koans
                 // typeof(AboutMethods),
                 // typeof(AboutControlStatements),
                 // typeof(AboutGenericContainers),
-                typeof(AboutLambdas),
+                // typeof(AboutLambdas),
                 // typeof(AboutLinq),
-                // typeof(AboutDelegates),
+                typeof(AboutDelegates),
                 // typeof(AboutBitwiseAndShiftOperator),
                 };
         }
