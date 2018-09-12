@@ -80,18 +80,18 @@ namespace DotNetCoreKoans.Koans
 			MyMath math = new MyMath();
 			PassMeTheDelegate(math.Add);
 		}
-		// [Step(8)]
-		// public void DelegatesAreImmutable()
-		// {
-		// 	//Like strings it looks like you can change what a delegate references, but really they are immutable objects
-		// 	MyMath m = new MyMath();
-		// 	BinaryOp a = m.Add;
-		// 	BinaryOp original = a;
-		// 	Assert.Same(a, original);
-		// 	a = MyMath.Subtract;
-		// 	//a is now a different instance
-		// 	Assert.Same(a, original);
-		// }
+		[Step(8)]
+		public void DelegatesAreImmutable()
+		{
+			//Like strings it looks like you can change what a delegate references, but really they are immutable objects
+			MyMath m = new MyMath();
+			BinaryOp a = m.Add;
+			BinaryOp original = a;
+			Assert.Same(a, original);
+			a = MyMath.Subtract;
+			//a is now a different instance
+			Assert.Same(original, original);
+		}
 		delegate int Curry(int val);
 		public class FunctionalTricks
 		{
@@ -124,17 +124,17 @@ namespace DotNetCoreKoans.Koans
 			//Delegates may have more than one method attached, but only the result of the last method is returned.
 			Assert.Equal(15, adding(5));
 		}
-		// [Step(11)]
-		// public void RemovingMethods()
-		// {
-		// 	FunctionalTricks f = new FunctionalTricks();
-		// 	Curry adding = f.Add5;
-		// 	adding += f.Add10;
-		// 	Assert.Equal(2, adding.GetInvocationList().Length);
-		// 	//Remove Add5 from the invocation list
-		// 	Assert.Equal(1, adding.GetInvocationList().Length);
-		// 	Assert.Equal("Add10", adding.GetMethodInfo().Name);
-		// }
+		[Step(11)]
+		public void RemovingMethods()
+		{
+			FunctionalTricks f = new FunctionalTricks();
+			Curry adding = f.Add5;
+			adding += f.Add10;
+			Assert.Equal(2, adding.GetInvocationList().Length);
+			//Remove Add5 from the invocation list
+			Assert.Equal(2, adding.GetInvocationList().Length);
+			Assert.Equal("Add10", adding.GetMethodInfo().Name);
+		}
 
 		private void AssertIntEqualsFourtyTwo(int x)
 		{
@@ -149,31 +149,31 @@ namespace DotNetCoreKoans.Koans
 			int y = int.Parse(s);
 			Assert.Equal(42, x + y);
 		}
-		// [Step(12)]
-		// public void BuiltInActionDelegateTakesInt()
-		// {
-		// 	//With the release of generics in .Net 2.0 we got some delegates which will cover most of our needs. 
-		// 	//You will see them in the base class libraries, so knowing about them will be helpful. 
-		// 	//The first is Action<>. Action<> can take a variety of parameters and has a void return type.
-		// 	//  public delgate void Action<T>(T obj);
+		[Step(12)]
+		public void BuiltInActionDelegateTakesInt()
+		{
+			//With the release of generics in .Net 2.0 we got some delegates which will cover most of our needs. 
+			//You will see them in the base class libraries, so knowing about them will be helpful. 
+			//The first is Action<>. Action<> can take a variety of parameters and has a void return type.
+			//  public delgate void Action<T>(T obj);
 
-		// 	Action<int> i = AssertIntEqualsFourtyTwo;
-		// 	i((int)FILL_ME_IN);
-		// }
-		// [Step(13)]
-		// public void BuiltInActionDelegateTakesString()
-		// {
-		// 	// Because the delegate is a template, it also works with any other type. 
-		// 	Action<string> s = AssertStringEqualsFourtyTwo;
-		// 	s((string)FILL_ME_IN);
-		// }
-		// [Step(14)]
-		// public void BuiltInActionDelegateIsOverloaded()
-		// {
-		// 	//Action is an overloaded delegate so it can take more than one paramter
-		// 	Action<int, string> a = AssertAddEqualsFourtyTwo;
-		// 	a(12, (string)FILL_ME_IN);
-		// }
+			Action<int> i = AssertIntEqualsFourtyTwo;
+			i((int)42);
+		}
+		[Step(13)]
+		public void BuiltInActionDelegateTakesString()
+		{
+			// Because the delegate is a template, it also works with any other type. 
+			Action<string> s = AssertStringEqualsFourtyTwo;
+			s((string)"42");
+		}
+		[Step(14)]
+		public void BuiltInActionDelegateIsOverloaded()
+		{
+			//Action is an overloaded delegate so it can take more than one paramter
+			Action<int, string> a = AssertAddEqualsFourtyTwo;
+			a(12, (string)"30");
+		}
 		public class Seen
 		{
 			private StringBuilder _letters = new StringBuilder();

@@ -122,9 +122,16 @@ namespace DotNetCoreKoans.Koans
             //know how to solve it try to Google it.
             int a = 15;
             int b = 4;
+            while (b != 0)
+            {
+                var sum = a ^ b;
+                var carry = (a & b) << 1;
+                a = sum;
+                b = carry;
+            }
 
             //Here goes your implementation to set value to FILL_ME_IN
-            Assert.Equal(19, 19);
+            Assert.Equal(a, 19);
         }
 
         [Step(11)]
